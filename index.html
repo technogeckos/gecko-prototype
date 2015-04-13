@@ -13,6 +13,18 @@
       padding-top: 60px;
       padding-bottom: 40px;
     }
+    .modal {
+      display: none;
+    }
+    .modal.in {
+      display: block;
+    }
+    .right {
+      float: right;
+    }
+    .modal-body .btn {
+      margin: 10px;
+    }
   </style>
   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -29,7 +41,7 @@
   <link rel="shortcut icon" href="assets/ico/favicon.png">
 </head>
 <body>
-
+  
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -44,7 +56,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="icon-play-circle icon-white"></i></a></li>
+            <li><a href="#" role="button" data-toggle="modal" data-target="#myModal"><i class="icon-play-circle icon-white"></i></a></li>
             <!-- Button trigger modal -->
             <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
               Launch demo modal
@@ -85,24 +97,6 @@
     </div>
 
     <hr>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <footer>
       
     </footer>
@@ -111,15 +105,38 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="assets/js/bootstrap.js"></script>
   <script>
-    function effectFadeIn(classname) {
-      $("."+classname).fadeOut(800).fadeIn(800, effectFadeOut(classname))
-    }
-    function effectFadeOut(classname) {
-      $("."+classname).fadeIn(800).fadeOut(800, effectFadeIn(classname))
-    }
     $(document).ready(function(){
-      effectFadeIn('icon-play-circle');
+      $('#bullied').on('click', function() {
+        $('div.prompt').html('<p>I am sorry to hear that! Here are some <a href="#">resources</a> you can look at for getting help. Would you like to talk to somebody?</p><button id="yes" class="btn btn-default">Yes</button><button id="no" class="btn btn-default">No</button>');
+      });
+      window.setInterval(function () {
+        $('.icon-play-circle').fadeToggle();
+      }, 400);
     });
   </script>
+  <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Gecko Help</h4>
+          </div>
+          <div class="modal-body">
+            <img class="img-responsive right" src="assets/img/gecko.jpg" alt="image" />
+            <div class="prompt">
+              What can I help you with today?
+              <button id="bullied" class="btn btn-default">I'm being bullied online</button>
+              <button id="bully" class="btn btn-default">I am bullying someone else</button>
+              <button id="witness" class="btn btn-default">I've witnessed bullying</button>
+            </div>
+          </div>
+<!--           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
 </body>
 </html>
